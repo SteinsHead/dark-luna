@@ -6,7 +6,7 @@ import { join } from 'path';
 export class DiaryController {
   @Get()
   getDiary(): StreamableFile {
-    const diary = createReadStream(join(process.cwd(), 'README.md'));
+    const diary = createReadStream(join(process.cwd(), '/context/diary.md'));
     return new StreamableFile(diary);
   }
 }
