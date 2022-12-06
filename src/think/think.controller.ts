@@ -1,11 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 
 @Controller('think')
 export class ThinkController {
   @Get()
-  getThink(): any {
+  getThink(@Query('number') number?: number): any {
+    if(number === undefined) number = 3;
     const resArray = ['a', 'b', 'c'];
-    let picArray = [
+    const picArray = [
       'wallhaven-5d7vq1.png',
       'wallhaven-mdyqpm.jpg',
       'wallhaven-pkkm6p.png',
@@ -13,18 +14,22 @@ export class ThinkController {
       'wallhaven-yjk6ml.jpg',
     ];
 
-    let result = [];
-    let count = picArray.length;
-    for (let i = 0; i < 3; i++) {
-      const random = Math.floor(Math.random() * count) + i;
-      if (result.includes(picArray[random])) {
-        continue;
-      }
-      result[i] = picArray[random];
-      picArray[random] = picArray[i];
-      count--;
+    const result = [];
+    for (let i = 0; i < number; i++) {
+      const random = Math.floor(Math.random() * number);
+      console.log(random);
+      result.push(picArray[random]);
     }
 
-    return { a: picArray[0], b: picArray[1], c: picArray[2] };
+    const foo = {};
+
+    result.forEach((value, index) => {
+      foo[index.toString()] = value;
+      console.log(value);
+    });
+
+    console.log(result);
+
+    return foo;
   }
 }
