@@ -16,7 +16,7 @@ export class ThinkController {
 
     const result = [];
     for (let i = 0; i < number; i++) {
-      const random = Math.floor(Math.random() * number);
+      const random = Math.floor(Math.random() * number) % 5;
       console.log(random);
       result.push(picArray[random]);
     }
@@ -28,7 +28,7 @@ export class ThinkController {
       console.log(value);
     });
 
-    console.log(result);
+    console.log(foo);
 
     return foo;
   }
